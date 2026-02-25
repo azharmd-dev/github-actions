@@ -1,0 +1,30 @@
+name: Push Pipeline with Timeout
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10   # ⏱️ job timeout
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build project
+        run: |
+          echo "Building..."
+          sleep 30
+
+      - name: Test step (timeout demo)
+        timeout-minutes: 2   # ⏱️ step timeout
+        run: |
+          echo "Running tests..."
+          sleep 300
+
+      - name: Finish
+        run: echo "Pipeline completed"
