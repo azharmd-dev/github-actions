@@ -1,0 +1,89 @@
+name: Debug All Default Variables
+
+on:
+  workflow_dispatch:
+    inputs:
+      sample_input:
+        description: "Sample input"
+        required: false
+        default: "hello"
+
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      # ---------------------------------------
+      # 1️⃣ Print ALL environment variables
+      # ---------------------------------------
+      - name: Print all ENV variables
+        run: |
+          echo "===== ENV VARIABLES ====="
+          env | sort
+
+      # ---------------------------------------
+      # 2️⃣ Print GitHub context
+      # ---------------------------------------
+      - name: Print github context
+        run: |
+          echo "===== GITHUB CONTEXT ====="
+          echo '${{ toJSON(github) }}'
+
+      # ---------------------------------------
+      # 3️⃣ Print runner context
+      # ---------------------------------------
+      - name: Print runner context
+        run: |
+          echo "===== RUNNER CONTEXT ====="
+          echo '${{ toJSON(runner) }}'
+
+      # ---------------------------------------
+      # 4️⃣ Print job context
+      # ---------------------------------------
+      - name: Print job context
+        run: |
+          echo "===== JOB CONTEXT ====="
+          echo '${{ toJSON(job) }}'
+
+      # ---------------------------------------
+      # 5️⃣ Print steps context
+      # ---------------------------------------
+      - name: Print steps context
+        run: |
+          echo "===== STEPS CONTEXT ====="
+          echo '${{ toJSON(steps) }}'
+
+      # ---------------------------------------
+      # 6️⃣ Print inputs
+      # ---------------------------------------
+      - name: Print inputs
+        run: |
+          echo "===== INPUTS ====="
+          echo '${{ toJSON(inputs) }}'
+
+      # ---------------------------------------
+      # 7️⃣ Print event payload JSON
+      # ---------------------------------------
+      - name: Print event payload
+        run: |
+          echo "===== EVENT PAYLOAD ====="
+          cat $GITHUB_EVENT_PATH
+
+      # ---------------------------------------
+      # 8️⃣ Print commonly used variables
+      # ---------------------------------------
+      - name: Print important variables clearly
+        run: |
+          echo "Workflow: $GITHUB_WORKFLOW"
+          echo "Run ID: $GITHUB_RUN_ID"
+          echo "Run Number: $GITHUB_RUN_NUMBER"
+          echo "Actor: $GITHUB_ACTOR"
+          echo "Repository: $GITHUB_REPOSITORY"
+          echo "Branch: $GITHUB_REF_NAME"
+          echo "Commit SHA: $GITHUB_SHA"
+          echo "Event Name: $GITHUB_EVENT_NAME"
+          echo "Runner OS: $RUNNER_OS"
+          echo "Workspace: $GITHUB_WORKSPACE"
