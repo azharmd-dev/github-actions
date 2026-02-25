@@ -1,4 +1,4 @@
-name: conditions
+name: Conditions
 on: [push]
 jobs:
   conditions-demo:
