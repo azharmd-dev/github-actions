@@ -10,3 +10,7 @@ jobs:
       - name: trigger main
         if: github.ref == 'refs/heads/main'
         run: echo "Runs only on main branch"
+
+      - name: trigger feature
+        if: github.ref == 'refs/heads/feature-*'
+        run: echo "Runs only on main branch" 
