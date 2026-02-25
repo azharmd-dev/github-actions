@@ -20,7 +20,7 @@ jobs:
           sleep 30
 
       - name: Test step (timeout demo)
-        timeout-minutes: 1   # ⏱️ step timeout
+        timeout-minutes: 1  # ⏱️ step timeout
         run: |
           echo "Running tests..."
           sleep 300
