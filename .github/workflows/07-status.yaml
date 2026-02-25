@@ -1,0 +1,41 @@
+name: Post Stage Example
+
+on: push
+
+jobs:
+  status-demo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Main Build Step
+        run: |
+          echo "Running build..."
+          sleep 8
+
+      # --------------------------------
+      # POST: ALWAYS (like post { always })
+      # --------------------------------
+      - name: Always run (logs / cleanup)
+        if: always()
+        run: echo "This runs ALWAYS"
+
+      # --------------------------------
+      # POST: SUCCESS
+      # --------------------------------
+      - name: Run on Success
+        if: success()
+        run: echo "Build succeeded 🎉"
+
+      # --------------------------------
+      # POST: FAILURE
+      # --------------------------------
+      - name: Run on Failure
+        if: failure()
+        run: echo "Build failed ❌"
+
+      # --------------------------------
+      # POST: CANCELLED
+      # --------------------------------
+      - name: Run if Cancelled
+        if: cancelled()
+        run: echo "Workflow was cancelled ⏹️"
