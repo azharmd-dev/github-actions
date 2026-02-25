@@ -1,15 +1,14 @@
 name: Push Pipeline with Timeout
 
-on:
-  push:
-    branches:
-      - main
-      - develop
+on: [push]
+concurrency:
+  group: ${{ github.repository }}-${{ github.ref }}
+  cancel-in-progress: true #It cancel running one and pick up latest one
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 10   # ⏱️ job timeout
+    timeout-minutes: 2  # ⏱️ job timeout
 
     steps:
       - name: Checkout
@@ -21,7 +20,7 @@ jobs:
           sleep 30
 
       - name: Test step (timeout demo)
-        timeout-minutes: 2   # ⏱️ step timeout
+        timeout-minutes: 1   # ⏱️ step timeout
         run: |
           echo "Running tests..."
           sleep 300
