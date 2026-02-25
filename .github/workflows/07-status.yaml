@@ -12,6 +12,9 @@ jobs:
           echo "Running build..."
           sleep 8
 
+      - name: Simulate failure
+        run: exit 1
+
       # --------------------------------
       # POST: ALWAYS (like post { always })
       # --------------------------------
