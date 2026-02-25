@@ -8,7 +8,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 2  # ⏱️ job timeout
+    timeout-minutes: 2  # job timeout
 
     steps:
       - name: Checkout
