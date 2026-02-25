@@ -14,7 +14,7 @@ jobs:
         run: sleep 10
 
   job-3:
-    needs: job-1
+    needs: job-1 #It will depends on Job-1 
     runs-on: ubuntu-latest
     steps:
       - name: parallel job-2
