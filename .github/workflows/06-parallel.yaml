@@ -1,0 +1,20 @@
+name: Parallel
+on: [push]
+jobs:
+  job-1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: parallel job-1
+        run: sleep 10
+
+  job-2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: parallel job-2
+        run: sleep 10
+
+  job-3:
+    runs-on: ubuntu-latest
+    steps:
+      - name: parallel job-2
+        run: sleep 10
